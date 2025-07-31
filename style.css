@@ -1,35 +1,73 @@
-const startBtn = document.getElementById("startBtn");
-const timelineContainer = document.getElementById("timeline");
-const timelineItems = document.querySelectorAll("#timeline li");
-const bgMusic = document.getElementById("bgMusic");
-
-startBtn.addEventListener("click", () => {
-  startBtn.style.display = "none";
-  timelineContainer.classList.remove("hidden");
-  bgMusic.play();
-  showTimeline();
-});
-
-function showTimeline() {
-  let index = 0;
-  const interval = setInterval(() => {
-    if (index < timelineItems.length) {
-      timelineItems[index].classList.add("show");
-      index++;
-    } else {
-      clearInterval(interval);
-    }
-  }, 800);
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to right top, #f7c9ff, #ffd1dc);
+  font-family: 'Segoe UI', sans-serif;
+  color: #4d004d;
+  overflow-x: hidden;
 }
 
-// Floating hearts
-function createHeart() {
-  const heart = document.createElement("div");
-  heart.classList.add("heart");
-  heart.style.left = Math.random() * 100 + "vw";
-  heart.style.animationDuration = 4 + Math.random() * 3 + "s";
-  document.body.appendChild(heart);
-  setTimeout(() => heart.remove(), 7000);
+.container {
+  text-align: center;
+  padding: 3rem 1rem;
 }
 
-setInterval(createHeart, 500);
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.intro {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+button {
+  padding: 0.8rem 2rem;
+  font-size: 1rem;
+  background: #ff4da6;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 0.3s ease;
+  margin-bottom: 2rem;
+}
+
+button:hover {
+  background: #cc007a;
+}
+
+.timeline {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.timeline p {
+  font-size: 1.1rem;
+  background: white;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-left: 6px solid #ff4da6;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.hidden {
+  display: none;
+}
+
+.heart {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  background: red;
+  animation: float 5s infinite ease-in;
+  clip-path: polygon(50% 0%, 100% 35%, 85% 100%, 15% 100%, 0% 35%);
+}
+
+@keyframes float {
+  0% { transform: translateY(0) scale(1); opacity: 1; }
+  100% { transform: translateY(-800px) scale(1.5); opacity: 0; }
+}
