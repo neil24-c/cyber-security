@@ -1,22 +1,50 @@
-document.getElementById('revealBtn').addEventListener('click', () => {
-  const timeline = document.getElementById('timeline');
-  timeline.classList.remove('hidden');
+const timelineItems = document.querySelectorAll(".timeline-item");
+let currentIndex = 0;
 
-  const entries = timeline.querySelectorAll('.entry');
-  entries.forEach((entry, i) => {
-    setTimeout(() => {
-      entry.classList.add('visible');
-    }, i * 700);
-  });
+function revealTimeline() {
+  document.getElementById("timelineContainer").classList.remove("hidden");
+  showTimelineItem(currentIndex);
+}
+
+function showTimelineItem(index) {
+  timelineItems.forEach(item => item.style.display = "none");
+  timelineItems[index].style.display = "block";
+}
+
+function nextTimeline() {
+  if (currentIndex < timelineItems.length - 1) {
+    currentIndex++;
+    showTimelineItem(currentIndex);
+  }
+}
+
+function prevTimeline() {
+  if (currentIndex > 0) {
+    currentIndex--;
+    showTimelineItem(currentIndex);
+  }
+}
+
+// Music controls
+const audio = document.getElementById("loveSong");
+const playBtn = document.getElementById("playBtn");
+const seekSlider = document.getElementById("seekSlider");
+
+function togglePlay() {
+  if (audio.paused) {
+    audio.play();
+    playBtn.textContent = "Pause";
+  } else {
+    audio.pause();
+    playBtn.textContent = "Play";
+  }
+}
+
+audio.addEventListener("timeupdate", () => {
+  seekSlider.value = (audio.currentTime / audio.duration) * 100;
 });
 
-// Floating hearts generator
-const hearts = document.getElementById('hearts');
-setInterval(() => {
-  const heart = document.createElement('div');
-  heart.className = 'heart';
-  heart.style.left = Math.random() * 100 + 'vw';
-  heart.style.animationDuration = (Math.random() * 2 + 4) + 's';
-  hearts.appendChild(heart);
-  setTimeout(() => heart.remove(), 6000);
-}, 500);
+seekSlider.addEventListener("input", () => {
+  const seekTo = (seekSlider.value / 100) * audio.duration;
+  audio.currentTime = seekTo;
+});
