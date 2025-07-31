@@ -3,45 +3,35 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Our Love Story Timeline 💜</title>
+  <title>Our Love Timeline</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div id="stars"></div>
-  <div class="container">
-    <h1 class="title">Our Love Story 💖</h1>
+  <div id="sparkles"></div>
+  <div class="hearts"></div>
 
-    <!-- Music Controls -->
-    <div class="music-controls">
-      <audio id="loveSong" src="othaiyadi.mp3" preload="auto"></audio>
-      <button onclick="togglePlay()" id="playBtn">Play</button>
-      <input type="range" id="seekSlider" min="0" max="100" value="0" step="1">
+  <audio id="bg-music" autoplay loop>
+    <source src="othaiyadi pathayila ( s l o w e d  r e v e r b )  lilvibex.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <div class="music-controls">
+    <button id="toggleMusic">Pause Music</button>
+  </div>
+
+  <div class="centered">
+    <h1>Our Magical Love Story 🌌</h1>
+    <button id="revealBtn">Reveal the Timeline 💖</button>
+  </div>
+
+  <div id="timeline" class="hidden">
+    <div class="timeline-nav">
+      <button id="prevBtn">⬅️</button>
+      <button id="nextBtn">➡️</button>
     </div>
-
-    <!-- Show Timeline Button -->
-    <button id="showTimelineBtn" onclick="revealTimeline()">Reveal Timeline 📜</button>
-
-    <!-- Timeline Section -->
-    <div id="timelineContainer" class="hidden">
-      <div id="timeline">
-        <div class="timeline-item">Sighting each other secretly</div>
-        <div class="timeline-item">Talking to each other through Mack</div>
-        <div class="timeline-item">Texting on Instagram</div>
-        <div class="timeline-item">Drifted apart</div>
-        <div class="timeline-item">Life brought us back on Oct 2nd</div>
-        <div class="timeline-item">Met at Gold Rush and hugged so tight</div>
-        <div class="timeline-item">Fell in love too deep</div>
-        <div class="timeline-item">Again faced hardships</div>
-        <div class="timeline-item">Jan 1st started fresh</div>
-        <div class="timeline-item">Purple Moda</div>
-        <div class="timeline-item">Highs and lows but still strong — forever 💜</div>
-      </div>
-
-      <!-- Navigation Controls -->
-      <div class="nav-controls">
-        <button onclick="prevTimeline()">← Back</button>
-        <button onclick="nextTimeline()">Next →</button>
-      </div>
+    <div id="timelineContent" class="timeline-item">
+      <!-- Filled dynamically via JS -->
     </div>
   </div>
 
