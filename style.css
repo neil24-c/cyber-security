@@ -1,96 +1,116 @@
-body {
+* {
   margin: 0;
   padding: 0;
-  background: linear-gradient(to right, #ffdde1, #ee9ca7);
+  box-sizing: border-box;
   font-family: 'Segoe UI', sans-serif;
-  overflow-x: hidden;
+}
+
+body {
+  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
   height: 100vh;
+  overflow: hidden;
   position: relative;
+  color: white;
+}
+
+#stars {
+  background: url('https://raw.githubusercontent.com/VincentGarreau/particles.js/master/demo/img/stars.png') repeat;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  animation: moveStars 60s linear infinite;
+}
+
+@keyframes moveStars {
+  from { background-position: 0 0; }
+  to { background-position: 10000px 10000px; }
 }
 
 .container {
   text-align: center;
-  padding: 40px 20px;
+  padding-top: 60px;
+  max-width: 600px;
+  margin: auto;
 }
 
 .title {
-  font-size: 2.5em;
-  color: #fff;
-  text-shadow: 2px 2px 6px #000;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
 }
 
-.intro {
-  font-size: 1.2em;
-  color: #fefefe;
-  margin-bottom: 30px;
+.music-controls {
+  margin: 20px auto;
+}
+
+#seekSlider {
+  width: 60%;
+  margin-top: 10px;
 }
 
 button {
-  padding: 12px 24px;
-  font-size: 1em;
-  background-color: #fff;
-  color: #ee0979;
+  background: #ff66b2;
+  color: white;
   border: none;
-  border-radius: 20px;
+  padding: 10px 20px;
+  margin: 8px;
+  border-radius: 25px;
+  font-size: 1rem;
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  transition: 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 button:hover {
-  background-color: #ee0979;
-  color: #fff;
+  background: #e60073;
 }
 
-.timeline {
-  margin-top: 30px;
-  color: #fff;
-  font-size: 1.1em;
-}
-
-.entry {
-  margin: 12px 0;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: 0.5s ease;
-}
-
-.entry.visible {
-  opacity: 1;
-  transform: translateY(0);
+#timelineContainer {
+  margin-top: 40px;
+  transition: opacity 1s ease-in-out;
 }
 
 .hidden {
   display: none;
 }
 
-.hearts {
+#timeline {
+  margin: 20px 0;
+  font-size: 1.2rem;
+  min-height: 80px;
+}
+
+.timeline-item {
+  display: none;
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.nav-controls {
+  margin-top: 20px;
+}
+
+/* Floating hearts */
+body::after {
+  content: '';
   position: fixed;
-  top: 0;
-  left: 0;
+  top: -10%;
+  left: 50%;
   width: 100%;
   height: 100%;
   pointer-events: none;
-  overflow: hidden;
+  background-image: url('https://i.ibb.co/3M7N6fz/heart.png');
+  background-repeat: repeat;
+  background-size: 40px;
+  opacity: 0.1;
+  animation: floatHearts 20s linear infinite;
 }
 
-.heart {
-  width: 20px;
-  height: 20px;
-  background: url('https://i.imgur.com/8Km9tLL.png') no-repeat center;
-  background-size: cover;
-  position: absolute;
-  animation: float 6s infinite ease-in;
-  opacity: 0.7;
-}
-
-@keyframes float {
-  0% {
-    transform: translateY(0) scale(1);
-    opacity: 0.7;
-  }
-  100% {
-    transform: translateY(-100vh) scale(1.5);
-    opacity: 0;
-  }
+@keyframes floatHearts {
+  from { transform: translateY(0) rotate(0deg); }
+  to { transform: translateY(100%) rotate(360deg); }
 }
