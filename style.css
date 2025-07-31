@@ -1,73 +1,96 @@
 body {
   margin: 0;
   padding: 0;
-  background: linear-gradient(to right top, #f7c9ff, #ffd1dc);
+  background: linear-gradient(to right, #ffdde1, #ee9ca7);
   font-family: 'Segoe UI', sans-serif;
-  color: #4d004d;
   overflow-x: hidden;
+  height: 100vh;
+  position: relative;
 }
 
 .container {
   text-align: center;
-  padding: 3rem 1rem;
+  padding: 40px 20px;
 }
 
-h1 {
-  font-size: 2.5rem;
-  margin-bottom: 0.5rem;
+.title {
+  font-size: 2.5em;
+  color: #fff;
+  text-shadow: 2px 2px 6px #000;
 }
 
 .intro {
-  font-size: 1.2rem;
-  margin-bottom: 2rem;
+  font-size: 1.2em;
+  color: #fefefe;
+  margin-bottom: 30px;
 }
 
 button {
-  padding: 0.8rem 2rem;
-  font-size: 1rem;
-  background: #ff4da6;
-  color: white;
+  padding: 12px 24px;
+  font-size: 1em;
+  background-color: #fff;
+  color: #ee0979;
   border: none;
-  border-radius: 12px;
+  border-radius: 20px;
   cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   transition: 0.3s ease;
-  margin-bottom: 2rem;
 }
 
 button:hover {
-  background: #cc007a;
+  background-color: #ee0979;
+  color: #fff;
 }
 
 .timeline {
-  max-width: 600px;
-  margin: 0 auto;
-  text-align: left;
+  margin-top: 30px;
+  color: #fff;
+  font-size: 1.1em;
 }
 
-.timeline p {
-  font-size: 1.1rem;
-  background: white;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  border-left: 6px solid #ff4da6;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+.entry {
+  margin: 12px 0;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: 0.5s ease;
+}
+
+.entry.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .hidden {
   display: none;
 }
 
-.heart {
+.hearts {
   position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.heart {
   width: 20px;
   height: 20px;
-  background: red;
-  animation: float 5s infinite ease-in;
-  clip-path: polygon(50% 0%, 100% 35%, 85% 100%, 15% 100%, 0% 35%);
+  background: url('https://i.imgur.com/8Km9tLL.png') no-repeat center;
+  background-size: cover;
+  position: absolute;
+  animation: float 6s infinite ease-in;
+  opacity: 0.7;
 }
 
 @keyframes float {
-  0% { transform: translateY(0) scale(1); opacity: 1; }
-  100% { transform: translateY(-800px) scale(1.5); opacity: 0; }
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(-100vh) scale(1.5);
+    opacity: 0;
+  }
 }
